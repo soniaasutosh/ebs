@@ -1,10 +1,13 @@
 package com.asutosh.ebs.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name = "customer")
 public class Customer {
@@ -22,6 +25,9 @@ public class Customer {
 
 	@Column(name = "gender")
 	private String gender;
+
+	@OneToMany(mappedBy = "customer")
+	private Set<Address> addresses;
 
 	public Long getCutomerId() {
 		return cutomerId;

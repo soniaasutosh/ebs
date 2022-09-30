@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
 
 @Entity(name = "customer")
 public class Customer {
@@ -20,7 +21,7 @@ public class Customer {
 	@Column(name = "customer_name")
 	private String customerName;
 
-	@Column(name = "mobile_number")
+	@Column(name = "mobile_number",unique = true)
 	private String mobileNumber;
 
 	@Column(name = "gender")

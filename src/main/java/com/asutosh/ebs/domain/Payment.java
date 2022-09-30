@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,8 @@ public class Payment {
 	@Column(name = "payment_amount")
 	private Long paymentAmount;
 	
-	@Column(name = "payment_mode")
+	@Column(name = "payment_mode",columnDefinition = "ENUM('CARD', 'UPI', 'WALLET')")
+	@Enumerated(EnumType.STRING)
 	private PaymentMethods paymentMode;
  
 	@Column(name = "created_on")

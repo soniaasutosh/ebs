@@ -2,6 +2,8 @@ package com.asutosh.ebs.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,11 @@ import javax.persistence.ManyToOne;
 
 @Entity(name = "WalletLedger")
 public class WalletLedger {
+	
+	public enum  TransactionType
+	{
+	    CREDIT,DEBIT;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +31,9 @@ public class WalletLedger {
 	private long amount;
 
 
-	@Column(name = "transactio_type")
-	private long transactionType;
+	@Column(name = "transactio_type",columnDefinition = "ENUM('CREDIT', 'DEBIT')")
+	@Enumerated(EnumType.STRING)
+	private TransactionType transactionType;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="payment_id", nullable=false)
@@ -59,11 +67,11 @@ public class WalletLedger {
 		this.amount = amount;
 	}
 
-	public long getTransactionType() {
+	public TransactionType getTransactionType() {
 		return transactionType;
 	}
 
-	public void setTransactionType(long transactionType) {
+	public void setTransactionType(TransactionType transactionType) {
 		this.transactionType = transactionType;
 	}
 

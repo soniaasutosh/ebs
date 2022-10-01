@@ -33,7 +33,7 @@ public class Address implements Serializable  {
 	private String postal;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="customer_id", nullable=false)
+	@JoinColumn(name="customer_id", nullable=true)
 	private Customer customer;
 	
 	@Transient

@@ -1,9 +1,11 @@
 package com.asutosh.ebs.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,12 +13,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.UniqueConstraint;
 
 @Entity(name = "customer")
-public class Customer {
+public class Customer implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cutomer_id")
-	private Long cutomerId;
+	@Column(name = "customer_id")
+	private Long customerId;
 
 	@Column(name = "customer_name")
 	private String customerName;
@@ -27,15 +29,15 @@ public class Customer {
 	@Column(name = "gender")
 	private String gender;
 
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer",fetch = FetchType.LAZY)
 	private Set<Address> addresses;
 
 	public Long getCutomerId() {
-		return cutomerId;
+		return customerId;
 	}
 
-	public void setCutomerId(Long cutomerId) {
-		this.cutomerId = cutomerId;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getCustomerName() {
@@ -60,6 +62,14 @@ public class Customer {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 }

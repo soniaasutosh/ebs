@@ -1,4 +1,4 @@
-package com.asutosh.ebs.domain;
+package com.asutosh.ebs.dto;
 
 import java.io.Serializable;
 
@@ -11,77 +11,56 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "UserLogin")
-public class UserLogin implements Serializable {
+public class UserLoginDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_login_id")
 	private Long userLoginId;
 
-	@Column(name = "username")
 	private String username;
 
-	@Column(name = "password")
 	private String password;
 
-	@Column(name = "role")
 	private String role;
 
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="customer_id", nullable=false)
-	private Customer customer;
-
+	private CustomerDTO customer;
 
 	public Long getUserLoginId() {
 		return userLoginId;
 	}
 
-
 	public void setUserLoginId(Long userLoginId) {
 		this.userLoginId = userLoginId;
 	}
-
 
 	public String getUsername() {
 		return username;
 	}
 
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 	public String getRole() {
 		return role;
 	}
 
-
 	public void setRole(String role) {
 		this.role = role;
 	}
 
-
-	public Customer getCustomer() {
+	public CustomerDTO getCustomer() {
 		return customer;
 	}
 
-
-	public void setCustomer(Customer customer) {
+	public void setCustomer(CustomerDTO customer) {
 		this.customer = customer;
 	}
 
-	
 }

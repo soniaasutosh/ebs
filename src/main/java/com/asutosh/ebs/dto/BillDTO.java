@@ -1,4 +1,4 @@
-package com.asutosh.ebs.domain;
+package com.asutosh.ebs.dto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,43 +12,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "Bill")
-public class Bill implements Serializable{
+public class BillDTO implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "bill_id")
 	private Long billId;
 
-	@Column(name = "bill_date")
 	private Date billDate;
 
-	@Column(name = "due_date")
 	private String dueDate;
 
-	@Column(name = "bill_amount")
 	private String billAmount;
-	
-	@Column(name = "status")
-	private String status;
-	
-	@Column(name = "paid_amount")
-	private String paidAmount;
-	
-	@Column(name = "created_on")
-	private String createdOn;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="metre_id", nullable=false)
-	private Metre metre;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="payment_id", nullable=false)
-	private Payment payment;
-	
-	public Long bill_id() {
-		return billId;
-	}
+	private String status;
+
+	private String paidAmount;
+
+	private String createdOn;
+
+	private MetreDTO metre;
+
+	private PaymentDTO payment;
 
 	public Long getBillId() {
 		return billId;
@@ -106,19 +88,20 @@ public class Bill implements Serializable{
 		this.createdOn = createdOn;
 	}
 
-	public Metre getMetre() {
+	public MetreDTO getMetre() {
 		return metre;
 	}
 
-	public void setMetre(Metre metre) {
+	public void setMetre(MetreDTO metre) {
 		this.metre = metre;
 	}
 
-	public Payment getPayment() {
+	public PaymentDTO getPayment() {
 		return payment;
 	}
 
-	public void setPayment(Payment payment) {
+	public void setPayment(PaymentDTO payment) {
 		this.payment = payment;
 	}
+
 }

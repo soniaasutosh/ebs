@@ -1,37 +1,18 @@
-package com.asutosh.ebs.domain;
+package com.asutosh.ebs.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.asutosh.ebs.domain.Payment.PaymentMethods;
 
-@Entity(name = "payment")
-public class Payment implements Serializable{
-	
-	public enum  PaymentMethods
-	{
-	    CARD, UPI, WALLET;
-	}
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "payment_id")
+public class PaymentDTO {
+
 	private Long paymentId;
-	
-	@Column(name = "payment_amount")
+
 	private Long paymentAmount;
-	
-	@Column(name = "payment_mode",columnDefinition = "ENUM('CARD', 'UPI', 'WALLET')")
-	@Enumerated(EnumType.STRING)
+
 	private PaymentMethods paymentMode;
- 
-	@Column(name = "created_on")
+
 	private Date createdOn;
 
 	public Long getPaymentId() {
@@ -65,8 +46,5 @@ public class Payment implements Serializable{
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
-	
-	
 
-	 
 }

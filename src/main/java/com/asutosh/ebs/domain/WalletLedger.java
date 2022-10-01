@@ -1,5 +1,7 @@
 package com.asutosh.ebs.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "WalletLedger")
-public class WalletLedger {
+public class WalletLedger implements Serializable{
 	
 	public enum  TransactionType
 	{
@@ -22,7 +24,7 @@ public class WalletLedger {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wallet_ledger_id")
-	private Long wallet_ledger_id;
+	private Long walletLedgerId;
 
 	@Column(name = "current_balance")
 	private long currentBalance;
@@ -39,16 +41,12 @@ public class WalletLedger {
 	@JoinColumn(name="payment_id", nullable=false)
 	private Payment payment;
 
-	public Long Wallet_ledger_id(){
-		return Wallet_ledger_id();
-	}
-		
-	public Long getWallet_ledger_id() {
-		return wallet_ledger_id;
+	public Long getWalletLedgerId() {
+		return walletLedgerId;
 	}
 
-	public void setWallet_ledger_id(Long wallet_ledger_id) {
-		this.wallet_ledger_id = wallet_ledger_id;
+	public void setWalletLedgerId(Long walletLedgerId) {
+		this.walletLedgerId = walletLedgerId;
 	}
 
 	public long getCurrentBalance() {
@@ -83,5 +81,3 @@ public class WalletLedger {
 		this.payment = payment;
 	}
 }
-
-	

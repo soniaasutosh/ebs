@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity(name = "Bill")
 public class Bill implements Serializable{
@@ -36,15 +37,21 @@ public class Bill implements Serializable{
 	private String paidAmount;
 	
 	@Column(name = "created_on")
-	private String createdOn;
+	private Date createdOn;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="metre_id", nullable=false)
+	@JoinColumn(name="metre_id", nullable=true)
 	private Metre metre;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="payment_id", nullable=false)
+	@JoinColumn(name="payment_id", nullable=true)
 	private Payment payment;
+	
+	@Transient
+	private Long metreId;
+	
+	@Transient
+	private Long paymentId;
 	
 	public Long bill_id() {
 		return billId;
@@ -98,11 +105,11 @@ public class Bill implements Serializable{
 		this.paidAmount = paidAmount;
 	}
 
-	public String getCreatedOn() {
+	public Date getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(String createdOn) {
+	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
 
@@ -120,5 +127,31 @@ public class Bill implements Serializable{
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+
+	public Long getMetreId() {
+		return metreId;
+	}
+
+	public void setMetreId(Long metreId) {
+		this.metreId = metreId;
+	}
+
+	public Long getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
+	}
+
+	public Object getBill() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static Bill get() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

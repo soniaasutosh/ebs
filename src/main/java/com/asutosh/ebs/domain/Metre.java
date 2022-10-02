@@ -1,6 +1,7 @@
 package com.asutosh.ebs.domain;
 
 import java.io.Serializable;
+import java.util.stream.Stream;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity(name = "Metre")
 public class Metre implements Serializable{
@@ -30,10 +32,13 @@ public class Metre implements Serializable{
 
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="address_id", nullable=false)
+	@JoinColumn(name="address_id", nullable=true)
 	private Address address;
+	
+	@Transient
+	private Long addressId;
 
-
+      
 	public Long getMetreId() {
 		return metreId;
 	}
@@ -81,6 +86,22 @@ public class Metre implements Serializable{
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+
+	public Long getAddressId() {
+		return addressId;
+	}
+
+
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
+	}
+
+
+	public Stream<Bill> stream() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	 

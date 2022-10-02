@@ -2,6 +2,7 @@ package com.asutosh.ebs.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.stream.Stream;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -64,6 +65,11 @@ public class Payment implements Serializable{
 
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
+	}
+
+	public Stream<Bill> stream() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

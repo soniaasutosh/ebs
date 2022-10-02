@@ -3,14 +3,8 @@ package com.asutosh.ebs.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.asutosh.ebs.domain.Bill;
+import com.asutosh.ebs.domain.Metre;
 
 public class BillDTO implements Serializable {
 
@@ -26,11 +20,50 @@ public class BillDTO implements Serializable {
 
 	private String paidAmount;
 
-	private String createdOn;
+	private Date createdOn;
 
 	private MetreDTO metre;
+	
+	private Long metreId;
 
 	private PaymentDTO payment;
+	
+	private Long paymentId;
+	
+
+	
+//create
+	public BillDTO() {}
+	
+	public BillDTO(Bill bill) {
+		this(bill.getBillId(), 
+				bill.getBillDate(),
+				bill.getDueDate(),
+				bill.getBillAmount(), 
+				bill.getStatus(),
+				bill.getPaidAmount(),
+				bill.getCreatedOn(),
+				bill.getMetre()!=null ? bill.getMetre().getMetreId() : null,
+			    bill.getPayment()!=null ? bill.getPayment().getPaymentId() : null
+			    );		
+	}
+	
+
+	public BillDTO(Long billId, Date billDate, String dueDate, String billAmount, String status, String paidAmount,
+			Date createdOn, Long metreId, Long paymentId) {
+		super();
+		this.billId = billId;
+		this.billDate = billDate;
+		this.dueDate = dueDate;
+		this.billAmount = billAmount;
+		this.status = status;
+		this.paidAmount = paidAmount;
+		this.createdOn = createdOn;
+		this.metreId = metreId;
+		this.paymentId = paymentId;
+	}
+
+
 
 	public Long getBillId() {
 		return billId;
@@ -80,11 +113,11 @@ public class BillDTO implements Serializable {
 		this.paidAmount = paidAmount;
 	}
 
-	public String getCreatedOn() {
+	public Date getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(String createdOn) {
+	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
 
@@ -102,6 +135,22 @@ public class BillDTO implements Serializable {
 
 	public void setPayment(PaymentDTO payment) {
 		this.payment = payment;
+	}
+
+	public Long getMetreId() {
+		return metreId;
+	}
+
+	public void setMetreId(Long metreId) {
+		this.metreId = metreId;
+	}
+
+	public Long getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
 	}
 
 }

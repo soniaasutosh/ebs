@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity(name = "UserLogin")
 public class UserLogin implements Serializable {
@@ -30,9 +31,11 @@ public class UserLogin implements Serializable {
 
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="customer_id", nullable=false)
+	@JoinColumn(name="customer_id", nullable=true)
 	private Customer customer;
 
+	@Transient
+	private Long customerId;
 
 	public Long getUserLoginId() {
 		return userLoginId;
@@ -81,6 +84,16 @@ public class UserLogin implements Serializable {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	

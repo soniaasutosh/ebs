@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.asutosh.ebs.domain.Metre;
+import com.asutosh.ebs.domain.UserLogin;
+
 public class UserLoginDTO {
 
 	private Long userLoginId;
@@ -22,6 +25,35 @@ public class UserLoginDTO {
 	private String role;
 
 	private CustomerDTO customer;
+	
+	private Long customerId;
+
+   public UserLoginDTO() {}
+   
+    public UserLoginDTO(UserLogin userLogin) {
+    	this(userLogin.getUserLoginId(), 
+    			userLogin.getUsername(),
+    			userLogin.getPassword(),
+    			userLogin.getRole(),
+    			userLogin.getCustomer()!= null ? userLogin.getCustomer().getCustomerId() : null
+				);
+	}
+
+	
+	
+	public UserLoginDTO(Long userLoginId, String username, String password, String role,
+			Long customerId) {
+		super();
+		this.userLoginId = userLoginId;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.customerId = customerId;
+	}
+
+
+
+	 
 
 	public Long getUserLoginId() {
 		return userLoginId;
@@ -61,6 +93,14 @@ public class UserLoginDTO {
 
 	public void setCustomer(CustomerDTO customer) {
 		this.customer = customer;
+	}
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 }

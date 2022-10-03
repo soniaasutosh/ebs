@@ -3,6 +3,8 @@ package com.asutosh.ebs.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.asutosh.ebs.domain.MetreReading;
+import com.asutosh.ebs.domain.Payment;
 import com.asutosh.ebs.domain.Payment.PaymentMethods;
 
 public class PaymentDTO {
@@ -18,6 +20,25 @@ public class PaymentDTO {
 	public Long getPaymentId() {
 		return paymentId;
 	}
+	
+	
+	 public PaymentDTO() {}
+		
+		public PaymentDTO(Payment payment) {
+			this(payment.getPaymentId(),
+					payment.getPaymentAmount(),
+					payment.getPaymentMode(),
+					payment.getCreatedOn()
+					);
+		}
+	public PaymentDTO(Long paymentId, Long paymentAmount, PaymentMethods paymentMode, Date createdOn) {
+			super();
+			this.paymentId = paymentId;
+			this.paymentAmount = paymentAmount;
+			this.paymentMode = paymentMode;
+			this.createdOn = createdOn;
+		}
+
 
 	public void setPaymentId(Long paymentId) {
 		this.paymentId = paymentId;

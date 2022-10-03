@@ -32,7 +32,7 @@ public class Customer implements Serializable{
 	@OneToMany(mappedBy = "customer",fetch = FetchType.LAZY)
 	private Set<Address> addresses;
 
-	public Long getCutomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
@@ -71,5 +71,7 @@ public class Customer implements Serializable{
 	public void setAddresses(Set<Address> addresses) {
 		this.addresses = addresses;
 	}
+
+	 
 
 }

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity(name = "WalletLedger")
 public class WalletLedger implements Serializable{
@@ -38,8 +39,11 @@ public class WalletLedger implements Serializable{
 	private TransactionType transactionType;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="payment_id", nullable=false)
+	@JoinColumn(name="payment_id", nullable=true)
 	private Payment payment;
+	
+	@Transient
+	private Long paymentId;
 
 	public Long getWalletLedgerId() {
 		return walletLedgerId;
@@ -79,5 +83,13 @@ public class WalletLedger implements Serializable{
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+
+	public Long getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
 	}
 }

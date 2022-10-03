@@ -26,10 +26,13 @@ public class CustomerDTO implements Serializable {
 
 	private Set<AddressDTO> addresses;
 	
+	private Set<UserLoginDTO> userLogin;
+	
+	
 	public CustomerDTO() {}
 	
 	public CustomerDTO(Customer customer) {
-		this(customer.getCutomerId(), 
+		this(customer.getCustomerId(), 
 				customer.getCustomerName(), 
 				customer.getMobileNumber(), 
 				customer.getGender());

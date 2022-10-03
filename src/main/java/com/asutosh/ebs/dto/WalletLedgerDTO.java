@@ -1,5 +1,7 @@
 package com.asutosh.ebs.dto;
 
+import com.asutosh.ebs.domain.UserLogin;
+import com.asutosh.ebs.domain.WalletLedger;
 import com.asutosh.ebs.domain.WalletLedger.TransactionType;
 
 public class WalletLedgerDTO {
@@ -13,7 +15,31 @@ public class WalletLedgerDTO {
 	private TransactionType transactionType;
 
 	private PaymentDTO payment;
+	
+	private Long paymentId;
+	
+	public WalletLedgerDTO(WalletLedger walletLedger) {
+    	this(walletLedger.getWalletLedgerId(), 
+    			walletLedger.getAmount(),
+    			walletLedger.getCurrentBalance(),
+    			walletLedger.getTransactionType(),
+    			walletLedger.getPayment()!= null ? walletLedger.getPayment().getPaymentId() : null
+				);
+	
+	
+	}
 
+
+	public WalletLedgerDTO(Long walletLedgerId, long currentBalance, long amount, TransactionType transactionType,
+			 Long paymentId) {
+		super();
+		this.walletLedgerId = walletLedgerId;
+		this.currentBalance = currentBalance;
+		this.amount = amount;
+		this.transactionType = transactionType;
+		
+		this.paymentId = paymentId;
+	}
 	public Long getWalletLedgerId() {
 		return walletLedgerId;
 	}
@@ -52,5 +78,13 @@ public class WalletLedgerDTO {
 
 	public void setPayment(PaymentDTO payment) {
 		this.payment = payment;
+	}
+
+	public Long getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
 	}
 }

@@ -18,7 +18,7 @@ public class AddressDTO implements Serializable {
 
 	private CustomerDTO customer;
 
-	private Long cutomerId;
+	private Long customerId;
 	
 	public AddressDTO() {}
     
@@ -29,18 +29,18 @@ public class AddressDTO implements Serializable {
 				address.getCity(), 
 				address.getState(), 
 				address.getPostal(), 
-				address.getCustomer()!=null?address.getCustomer().getCutomerId():null);
+				address.getCustomer()!=null?address.getCustomer().getCustomerId():null);
 	}
 	
 
-	public AddressDTO(Long addressId, String fullAddress, String city, String state, String postal, Long cutomerId) {
+	public AddressDTO(Long addressId, String fullAddress, String city, String state, String postal, Long customerId) {
 		super();
 		this.addressId = addressId;
 		this.fullAddress = fullAddress;
 		this.city = city;
 		this.state = state;
 		this.postal = postal;
-		this.cutomerId = cutomerId;
+		this.customerId = customerId;
 	}
 
 	public Long getAddressId() {
@@ -91,12 +91,14 @@ public class AddressDTO implements Serializable {
 		this.customer = customer;
 	}
 
-	public Long getCutomerId() {
-		return cutomerId;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setCutomerId(Long cutomerId) {
-		this.cutomerId = cutomerId;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
+
+ 
 
 }

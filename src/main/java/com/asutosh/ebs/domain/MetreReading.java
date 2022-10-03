@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity(name = "MetreReading")
 public class MetreReading implements Serializable{
@@ -26,8 +27,11 @@ public class MetreReading implements Serializable{
 	private String createdOn;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="metre_id", nullable=false)
+	@JoinColumn(name="metre_id", nullable=true)
 	private Metre metre;
+	
+	@Transient
+	private Long metreId;
 
 	public Long getMetreReadingId() {
 		return metreReadingId;
@@ -59,6 +63,14 @@ public class MetreReading implements Serializable{
 
 	public void setMetre(Metre metre) {
 		this.metre = metre;
+	}
+
+	public Long getMetreId() {
+		return metreId;
+	}
+
+	public void setMetreId(Long metreId) {
+		this.metreId = metreId;
 	}
 
 

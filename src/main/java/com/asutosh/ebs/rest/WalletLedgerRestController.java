@@ -29,7 +29,7 @@ import com.asutosh.ebs.repository.UserLoginRepository;
 import com.asutosh.ebs.repository.WalletLedgerRepository;
 
 @RestController
-@RequestMapping("/walletLedger")
+@RequestMapping("/api/walletLedger")
 public class WalletLedgerRestController {
 
 	private static final Logger log = LoggerFactory.getLogger(WalletLedgerRestController.class);

@@ -30,7 +30,7 @@ import com.asutosh.ebs.repository.AddressRepositoy;
 import com.asutosh.ebs.repository.BillRepository;
 
 @RestController
-@RequestMapping("/bill")
+@RequestMapping("/api/bill")
 public class BillRestController {
 
 	private static final Logger log = LoggerFactory.getLogger(BillRestController.class);

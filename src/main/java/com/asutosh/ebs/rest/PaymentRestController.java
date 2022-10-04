@@ -27,7 +27,7 @@ import com.asutosh.ebs.repository.AddressRepositoy;
 import com.asutosh.ebs.repository.PaymentRepository;
 
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("/api/payment")
 public class PaymentRestController {
 
 	private static final Logger log = LoggerFactory.getLogger(PaymentRestController.class);

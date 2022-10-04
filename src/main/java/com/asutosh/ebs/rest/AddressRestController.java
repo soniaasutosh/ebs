@@ -21,7 +21,7 @@ import com.asutosh.ebs.dto.AddressDTO;
 import com.asutosh.ebs.repository.AddressRepositoy;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/api/address")
 public class AddressRestController {
 
 	private static final Logger log = LoggerFactory.getLogger(AddressRestController.class);

@@ -26,7 +26,7 @@ import com.asutosh.ebs.dto.UserLoginDTO;
 import com.asutosh.ebs.repository.UserLoginRepository;
 
 @RestController
-@RequestMapping("/userLogin")
+@RequestMapping("/api/userLogin")
 public class UserLoginRestController {
 
 	private static final Logger log = LoggerFactory.getLogger(UserLoginRestController.class);

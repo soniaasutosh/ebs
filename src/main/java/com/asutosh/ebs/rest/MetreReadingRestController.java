@@ -24,7 +24,7 @@ import com.asutosh.ebs.dto.MetreReadingDTO;
 import com.asutosh.ebs.repository.MetreReadingRepository;
 
 @RestController
-@RequestMapping("/metreReading")
+@RequestMapping("/api/metreReading")
 public class MetreReadingRestController {
 
 	private static final Logger log = LoggerFactory.getLogger(MetreReadingRestController.class);

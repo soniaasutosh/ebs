@@ -1,6 +1,8 @@
 package com.asutosh.ebs.domain;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.stream.Stream;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "payment")
-public class Payment {
+public class Payment implements Serializable{
 	
 	public enum  PaymentMethods
 	{
@@ -33,6 +35,7 @@ public class Payment {
 	@Column(name = "created_on")
 	private Date createdOn;
 
+	
 	public Long getPaymentId() {
 		return paymentId;
 	}
@@ -63,6 +66,11 @@ public class Payment {
 
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
+	}
+
+	public Stream<Bill> stream() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

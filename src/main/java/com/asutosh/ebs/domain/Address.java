@@ -1,5 +1,7 @@
 package com.asutosh.ebs.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,9 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity(name = "address")
-public class Address {
+public class Address implements Serializable  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +33,19 @@ public class Address {
 	private String postal;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="customer_id", nullable=false)
+	@JoinColumn(name="customer_id", nullable=true)
 	private Customer customer;
+	
+	@Transient
+	private Long cutomerId;
+
+	public Long getCutomerId() {
+		return cutomerId;
+	}
+
+	public void setCutomerId(Long cutomerId) {
+		this.cutomerId = cutomerId;
+	}
 
 	public Long getAddressId() { 
 		return addressId;

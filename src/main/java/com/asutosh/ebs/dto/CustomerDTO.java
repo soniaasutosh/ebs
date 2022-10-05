@@ -1,4 +1,4 @@
-package com.asutosh.ebs.domain;
+package com.asutosh.ebs.dto;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -12,25 +12,39 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.UniqueConstraint;
 
-@Entity(name = "customer")
-public class Customer implements Serializable{
+import com.asutosh.ebs.domain.Customer;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "customer_id")
+public class CustomerDTO implements Serializable {
+
 	private Long customerId;
 
-	@Column(name = "customer_name")
 	private String customerName;
 
-	@Column(name = "mobile_number",unique = true)
 	private String mobileNumber;
 
-	@Column(name = "gender")
 	private String gender;
 
-	@OneToMany(mappedBy = "customer",fetch = FetchType.LAZY)
-	private Set<Address> addresses;
+	private Set<AddressDTO> addresses;
+	
+	private Set<UserLoginDTO> userLogin;
+	
+	
+	public CustomerDTO() {}
+	
+	public CustomerDTO(Customer customer) {
+		this(customer.getCustomerId(), 
+				customer.getCustomerName(), 
+				customer.getMobileNumber(), 
+				customer.getGender());
+	}
+	
+	public CustomerDTO(Long customerId, String customerName, String mobileNumber, String gender) {
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.mobileNumber = mobileNumber;
+		this.gender = gender;
+	}
 
 	public Long getCustomerId() {
 		return customerId;
@@ -42,6 +56,10 @@ public class Customer implements Serializable{
 
 	public String getCustomerName() {
 		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getMobileNumber() {
@@ -60,18 +78,22 @@ public class Customer implements Serializable{
 		this.gender = gender;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
-	public Set<Address> getAddresses() {
+	public Set<AddressDTO> getAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(Set<Address> addresses) {
+	public void setAddresses(Set<AddressDTO> addresses) {
 		this.addresses = addresses;
 	}
 
-	 
+	public Set<UserLoginDTO> getUserLogin() {
+		return userLogin;
+	}
+
+	public void setUserLogin(Set<UserLoginDTO> userLogin) {
+		this.userLogin = userLogin;
+	}
+	
+	
 
 }

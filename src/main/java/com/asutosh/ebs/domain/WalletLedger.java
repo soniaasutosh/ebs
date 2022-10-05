@@ -1,5 +1,7 @@
 package com.asutosh.ebs.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,9 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity(name = "WalletLedger")
-public class WalletLedger {
+public class WalletLedger implements Serializable{
 	
 	public enum  TransactionType
 	{
@@ -22,7 +25,7 @@ public class WalletLedger {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wallet_ledger_id")
-	private Long wallet_ledger_id;
+	private Long walletLedgerId;
 
 	@Column(name = "current_balance")
 	private long currentBalance;
@@ -36,19 +39,18 @@ public class WalletLedger {
 	private TransactionType transactionType;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="payment_id", nullable=false)
+	@JoinColumn(name="payment_id", nullable=true)
 	private Payment payment;
+	
+	@Transient
+	private Long paymentId;
 
-	public Long Wallet_ledger_id(){
-		return Wallet_ledger_id();
-	}
-		
-	public Long getWallet_ledger_id() {
-		return wallet_ledger_id;
+	public Long getWalletLedgerId() {
+		return walletLedgerId;
 	}
 
-	public void setWallet_ledger_id(Long wallet_ledger_id) {
-		this.wallet_ledger_id = wallet_ledger_id;
+	public void setWalletLedgerId(Long walletLedgerId) {
+		this.walletLedgerId = walletLedgerId;
 	}
 
 	public long getCurrentBalance() {
@@ -82,6 +84,12 @@ public class WalletLedger {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
-}
 
-	
+	public Long getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
+	}
+}

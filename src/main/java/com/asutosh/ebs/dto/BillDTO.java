@@ -1,61 +1,69 @@
-package com.asutosh.ebs.domain;
+package com.asutosh.ebs.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import com.asutosh.ebs.domain.Bill;
+import com.asutosh.ebs.domain.Metre;
 
-@Entity(name = "Bill")
-public class Bill implements Serializable{
+public class BillDTO implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "bill_id")
 	private Long billId;
 
-	@Column(name = "bill_date")
 	private Date billDate;
 
-	@Column(name = "due_date")
 	private String dueDate;
 
-	@Column(name = "bill_amount")
 	private String billAmount;
-	
-	@Column(name = "status")
-	private String status;
-	
-	@Column(name = "paid_amount")
-	private String paidAmount;
-	
-	@Column(name = "created_on")
-	private Date createdOn;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="metre_id", nullable=true)
-	private Metre metre;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="payment_id", nullable=true)
-	private Payment payment;
+	private String status;
+
+	private String paidAmount;
+
+	private Date createdOn;
+
+	private MetreDTO metre;
 	
-	@Transient
 	private Long metreId;
+
+	private PaymentDTO payment;
 	
-	@Transient
 	private Long paymentId;
 	
-	public Long bill_id() {
-		return billId;
+
+	
+//create
+	public BillDTO() {}
+	
+	public BillDTO(Bill bill) {
+		this(bill.getBillId(), 
+				bill.getBillDate(),
+				bill.getDueDate(),
+				bill.getBillAmount(), 
+				bill.getStatus(),
+				bill.getPaidAmount(),
+				bill.getCreatedOn(),
+				bill.getMetre()!=null ? bill.getMetre().getMetreId() : null,
+			    bill.getPayment()!=null ? bill.getPayment().getPaymentId() : null
+			    );		
 	}
+	
+
+	public BillDTO(Long billId, Date billDate, String dueDate, String billAmount, String status, String paidAmount,
+			Date createdOn, Long metreId, Long paymentId) {
+		super();
+		this.billId = billId;
+		this.billDate = billDate;
+		this.dueDate = dueDate;
+		this.billAmount = billAmount;
+		this.status = status;
+		this.paidAmount = paidAmount;
+		this.createdOn = createdOn;
+		this.metreId = metreId;
+		this.paymentId = paymentId;
+	}
+
+
 
 	public Long getBillId() {
 		return billId;
@@ -113,19 +121,19 @@ public class Bill implements Serializable{
 		this.createdOn = createdOn;
 	}
 
-	public Metre getMetre() {
+	public MetreDTO getMetre() {
 		return metre;
 	}
 
-	public void setMetre(Metre metre) {
+	public void setMetre(MetreDTO metre) {
 		this.metre = metre;
 	}
 
-	public Payment getPayment() {
+	public PaymentDTO getPayment() {
 		return payment;
 	}
 
-	public void setPayment(Payment payment) {
+	public void setPayment(PaymentDTO payment) {
 		this.payment = payment;
 	}
 
@@ -145,13 +153,4 @@ public class Bill implements Serializable{
 		this.paymentId = paymentId;
 	}
 
-	public Object getBill() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static Bill get() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

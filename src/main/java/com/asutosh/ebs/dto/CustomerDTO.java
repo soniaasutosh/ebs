@@ -16,7 +16,7 @@ import com.asutosh.ebs.domain.Customer;
 
 public class CustomerDTO implements Serializable {
 
-	private Long cutomerId;
+	private Long customerId;
 
 	private String customerName;
 
@@ -38,20 +38,20 @@ public class CustomerDTO implements Serializable {
 				customer.getGender());
 	}
 	
-	public CustomerDTO(Long cutomerId, String customerName, String mobileNumber, String gender) {
+	public CustomerDTO(Long customerId, String customerName, String mobileNumber, String gender) {
 		super();
-		this.cutomerId = cutomerId;
+		this.customerId = customerId;
 		this.customerName = customerName;
 		this.mobileNumber = mobileNumber;
 		this.gender = gender;
 	}
 
-	public Long getCutomerId() {
-		return cutomerId;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setCutomerId(Long cutomerId) {
-		this.cutomerId = cutomerId;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getCustomerName() {
@@ -84,6 +84,14 @@ public class CustomerDTO implements Serializable {
 
 	public void setAddresses(Set<AddressDTO> addresses) {
 		this.addresses = addresses;
+	}
+
+	public Set<UserLoginDTO> getUserLogin() {
+		return userLogin;
+	}
+
+	public void setUserLogin(Set<UserLoginDTO> userLogin) {
+		this.userLogin = userLogin;
 	}
 	
 	
